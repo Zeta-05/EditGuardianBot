@@ -19,7 +19,13 @@ def start(update: Update, context: CallbackContext):
     ]
 
     context.bot.send_photo(chat_id=update.effective_chat.id, photo="https://envs.sh/K0_.jpg")
-    update.message.reply_text(f"Hello! {mention}! I am Edit Guardian bot I delete Edited message", reply_markup=InlineKeyboardMarkup(keyboard))
+    update.message.reply_text(f"Hello! {◈Hello {mention}!❖
+
+⛩️ I'm Kayto Guardian. I delete edited messages in group to maintain the transparency there.
+
+📡 You'll be notified each time a message is deleted. 
+
+✦ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ғᴏʀ ᴍᴀɪɴᴛᴀɪɴ sᴇᴄᴜʀɪᴛʏ.", reply_markup=InlineKeyboardMarkup(keyboard))
 
 def check_edit(update: Update, context: CallbackContext):
     bot: Bot = context.bot
