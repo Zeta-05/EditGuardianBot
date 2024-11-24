@@ -41,11 +41,11 @@ def check_edit(update: Update, context: CallbackContext):
 
     # Check if the user is an admin
     member = bot.get_chat_member(chat_id, user_id)
-    if member.status in [ChatMember.ADMINISTRATOR, ChatMember.OWNER]:
-        return  # Ignore if the user is an admin or owner
+    if member.status in [ChatMember.ADMINISTRATOR, ChatMember.CREATOR]:
+        return  # Ignore if the user is an admin or creator (owner)
 
     # Notify and delete the edited message
-    bot.send_message(chat_id=chat_id, text=f"{user_mention} ,your edited message has been deleted. Join Support Chat [ @Anime_Chat_Group_Community ] 🌐")
+    bot.send_message(chat_id=chat_id, text=f"{user_mention} just edited a message🤡. I deleted their edited message🙂‍↕️🤡.")
     bot.delete_message(chat_id=chat_id, message_id=message_id)
 
 def main():
