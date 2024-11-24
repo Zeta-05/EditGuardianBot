@@ -1,4 +1,4 @@
-from telegram import Update, Bot, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram import Update, Bot, InlineKeyboardMarkup, InlineKeyboardButton, ChatMember
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from config import TOKEN, OWNER_ID
 
@@ -19,7 +19,10 @@ def start(update: Update, context: CallbackContext):
     ]
 
     context.bot.send_photo(chat_id=update.effective_chat.id, photo="https://envs.sh/K0_.jpg")
-    update.message.reply_text(f"⛩️ Hello {mention}!❖ I'm Kayto Guardian. I delete edited messages in group to maintain the transparency there.📡 You'll be notified each time a message is deleted ✦ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ғᴏʀ ᴍᴀɪɴᴛᴀɪɴ sᴇᴄᴜʀɪᴛʏ.", reply_markup=InlineKeyboardMarkup(keyboard))
+    update.message.reply_text(
+        f"⛩️ Hello {mention}!❖ I'm Kayto Guardian. I delete edited messages in groups to maintain transparency.📡 You'll be notified each time a message is deleted ✦ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ғᴏʀ ᴍᴀɪɴᴛᴀɪɴ sᴇᴄᴜʀɪᴛʏ.",
+        reply_markup=InlineKeyboardMarkup(keyboard),
+    )
 
 def check_edit(update: Update, context: CallbackContext):
     bot: Bot = context.bot
@@ -31,10 +34,18 @@ def check_edit(update: Update, context: CallbackContext):
     message_id = edited_message.message_id
     user_id = edited_message.from_user.id
     user_mention = f"{edited_message.from_user.first_name}"
+
+    # Check if the user is the owner
     if user_id == OWNER_ID:
-        return  # Ignore if owner edits the message
-    # Send a message notifying about the deletion
-    bot.send_message(chat_id=chat_id, text=f"{user_mention} just edited a message🤡. I deleted his edited message🙂‍↕️🤡.")
+        return  # Ignore if the owner edits the message
+
+    # Check if the user is an admin
+    member = bot.get_chat_member(chat_id, user_id)
+    if member.status in [ChatMember.ADMINISTRATOR, ChatMember.OWNER]:
+        return  # Ignore if the user is an admin or owner
+
+    # Notify and delete the edited message
+    bot.send_message(chat_id=chat_id, text=f"{user_mention} ,your edited message has been deleted. Join Support Chat [ @Anime_Chat_Group_Community ] 🌐")
     bot.delete_message(chat_id=chat_id, message_id=message_id)
 
 def main():
