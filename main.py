@@ -7,19 +7,19 @@ def start(update: Update, context: CallbackContext):
     mention = f"{user.first_name}"
     keyboard = [
         [
-            InlineKeyboardButton("Updates Channel", url=f"https://t.me/Kayto_Official"),
-            InlineKeyboardButton("Support Chat", url=f"https://t.me/Anime_Chat_Group_Community")
+            InlineKeyboardButton("NETWORK", url=f"https://t.me/Kayto_Official"),
+            InlineKeyboardButton("SUPPORT CHAT", url=f"https://t.me/Anime_Chat_Group_Community")
         ],
         [
-            InlineKeyboardButton("Add me to group", url=f"https://t.me/KaytoGuardian_bot?startgroup=true")
+            InlineKeyboardButton("ADD ME", url=f"https://t.me/KaytoGuardian_bot?startgroup=true")
         ],
         [
-            InlineKeyboardButton("Owner", url=f"https://t.me/Username_Of_Tuhin"),
+            InlineKeyboardButton("STARBOY", url=f"https://t.me/Username_Of_Tuhin"),
         ]
     ]
 
     context.bot.send_photo(chat_id=update.effective_chat.id, photo="https://envs.sh/K0_.jpg")
-    update.message.reply_text(f"◈Hello {mention}!❖⛩️ I'm Kayto Guardian. I delete edited messages in group to maintain the transparency there.📡 You'll be notified each time a message is deleted.✦ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ғᴏʀ ᴍᴀɪɴᴛᴀɪɴ sᴇᴄᴜʀɪᴛʏ.", reply_markup=InlineKeyboardMarkup(keyboard))
+    update.message.reply_text(f"⛩️ Hello {mention}!❖ I'm Kayto Guardian. I delete edited messages in group to maintain the transparency there.📡 You'll be notified each time a message is deleted ✦ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ғᴏʀ ᴍᴀɪɴᴛᴀɪɴ sᴇᴄᴜʀɪᴛʏ.", reply_markup=InlineKeyboardMarkup(keyboard))
 
 def check_edit(update: Update, context: CallbackContext):
     bot: Bot = context.bot
